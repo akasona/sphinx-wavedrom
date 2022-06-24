@@ -3,7 +3,7 @@ import os
 import subprocess
 import shlex
 from uuid import uuid4
-import cairosvg
+# import cairosvg
 from wavedrom import render
 from sphinx.errors import SphinxError
 import errno
@@ -51,17 +51,17 @@ def render_wavedrom_py(node, outpath, bname, image_format):
         svgout.saveas(fpath)
         return fname
 
-    if image_format == 'application/pdf':
-        fname = "{}.{}".format(bname, "pdf")
-        fpath = os.path.join(outpath, fname)
-        cairosvg.svg2pdf(svgout.tostring(), write_to=fpath)
-        return fname
+    # if image_format == 'application/pdf':
+    #     fname = "{}.{}".format(bname, "pdf")
+    #     fpath = os.path.join(outpath, fname)
+    #     cairosvg.svg2pdf(svgout.tostring(), write_to=fpath)
+    #     return fname
 
-    if image_format == 'image/png':
-        fname = "{}.{}".format(bname, "png")
-        fpath = os.path.join(outpath, fname)
-        cairosvg.svg2png(svgout.tostring(), write_to=fpath)
-        return fname
+    # if image_format == 'image/png':
+    #     fname = "{}.{}".format(bname, "png")
+    #     fpath = os.path.join(outpath, fname)
+    #     cairosvg.svg2png(svgout.tostring(), write_to=fpath)
+    #     return fname
 
     raise SphinxError("No valid wavedrom conversion supplied")
 
@@ -194,14 +194,14 @@ def render_wavedrom_cli(sphinx, node, outpath, bname, image_format):
         # SVG can be directly written and is supported on all versions
     if image_format == 'image/svg+xml':
         fname = "{}.{}".format(bname, "svg")
-    elif image_format == 'application/pdf':
-        fname = "{}.{}".format(bname, "pdf")
-        fpath = os.path.join(outpath, fname)
-        cairosvg.svg2pdf(url=output_svg, write_to=fpath)
-    elif image_format == 'image/png':
-        fname = "{}.{}".format(bname, "png")
-        fpath = os.path.join(outpath, fname)
-        cairosvg.svg2png(url=output_svg, write_to=fpath)
+    # elif image_format == 'application/pdf':
+    #     fname = "{}.{}".format(bname, "pdf")
+    #     fpath = os.path.join(outpath, fname)
+    #     cairosvg.svg2pdf(url=output_svg, write_to=fpath)
+    # elif image_format == 'image/png':
+    #     fname = "{}.{}".format(bname, "png")
+    #     fpath = os.path.join(outpath, fname)
+    #     cairosvg.svg2png(url=output_svg, write_to=fpath)
     else:
         raise SphinxError('Invalid choice of image format: \n\n%s' % image_format)
     return fname
