@@ -60,7 +60,7 @@ class WavedromDirective(Image, SphinxDirective):
             rel_filename, filename = self.env.relfn2path(argument)
             self.env.note_dependency(rel_filename)
             try:
-                with open(filename, 'r') as file_pointer:  # type: ignore
+                with open(filename, 'r', encoding="utf-8") as file_pointer:  # type: ignore
                     code = file_pointer.read()
             except (IOError, OSError):
                 return [document.reporter.warning(
